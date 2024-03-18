@@ -1,4 +1,3 @@
-// CartIcon.js
 import React from 'react';
 import cartIconImage from './cart-icon.png.webp'; 
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import Cart from './Cart';
 import Header from './Header';
 import ProductList from './ProductList';
+import About from './About';
 import './App.css';
 
 const productsArr = [
@@ -54,11 +56,32 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <Header cartItemCount={cart.length} />
-      <ProductList products={productsArr} addToCart={addToCart} />
-      <Cart cartItems={cart} />
-    </div>
+    <Router>
+      <div className="App">
+        <Header cartItemCount={cart.length} />
+        <nav className="main-nav">
+          <ul>
+            <li>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                About
+              </NavLink>
+            </li>
+            
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<ProductList products={productsArr} addToCart={addToCart} />} />
+          <Route path="/about" element={<About />} />
+
+        </Routes>
+        <Cart cartItems={cart} />
+      </div>
+    </Router>
   );
 };
 
