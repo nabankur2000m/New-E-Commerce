@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import Cart from './Cart';
 import Header from './Header';
+import Home from './Home';
 import ProductList from './ProductList';
 import About from './About';
 import './App.css';
@@ -62,22 +63,20 @@ const App = () => {
         <nav className="main-nav">
           <ul>
             <li>
-              <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                Home
-              </NavLink>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Home</NavLink>
             </li>
             <li>
-              <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                About
-              </NavLink>
+              <NavLink to="/products" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Products</NavLink>
             </li>
-            
+            <li>
+              <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>About</NavLink>
+            </li>
           </ul>
         </nav>
         <Routes>
-          <Route path="/" element={<ProductList products={productsArr} addToCart={addToCart} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList products={productsArr} addToCart={addToCart} />} />
           <Route path="/about" element={<About />} />
-
         </Routes>
         <Cart cartItems={cart} />
       </div>

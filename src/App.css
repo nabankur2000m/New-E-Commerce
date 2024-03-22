@@ -112,3 +112,32 @@ nav {
   right: -10px;
   font-size: 0.75em;
 }
+.food-list {
+  list-style-type: none; 
+  padding: 0;
+}
+
+.food-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; 
+  border-bottom: 1px solid #ddd; 
+}
+
+.food-title {
+  margin-right: 20px; 
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
