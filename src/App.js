@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ContactUs from './ContactUs';
 import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
 import Cart from './Cart';
 import Header from './Header';
@@ -71,12 +72,14 @@ const App = () => {
             <li>
               <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>About</NavLink>
             </li>
+            <NavLink to="/contact-us" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Contact Us</NavLink>
           </ul>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList products={productsArr} addToCart={addToCart} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact-us" element={<ContactUs />} /> 
         </Routes>
         <Cart cartItems={cart} />
       </div>
