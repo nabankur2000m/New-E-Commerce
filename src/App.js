@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ContactUs from './ContactUs';
 import { BrowserRouter as Router, Route, NavLink, Routes } from 'react-router-dom';
+import ProductDetailPage from './ProductDetailPage';
 import Cart from './Cart';
 import Header from './Header';
 import Home from './Home';
@@ -80,6 +81,7 @@ const App = () => {
           <Route path="/products" element={<ProductList products={productsArr} addToCart={addToCart} />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} /> 
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
         </Routes>
         <Cart cartItems={cart} />
       </div>
