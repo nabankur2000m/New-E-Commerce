@@ -10,6 +10,7 @@ import About from './About';
 import './App.css';
 import Login from './login'
 import { AuthProvider } from './AuthContext';
+import ProtectedRoute from './ProtectedRoute';
 
 const productsArr = [
   {
@@ -83,14 +84,19 @@ const App = () => {
           <NavLink to="/contact-us" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Contact Us</NavLink>
           </ul>
 </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList products={productsArr} addToCart={addToCart} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact-us" element={<ContactUs />} /> 
-          <Route path="/product/:productId" element={<ProductDetailPage />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/products" element={
+    <ProtectedRoute>
+      <ProductList products={productsArr} addToCart={addToCart} />
+    </ProtectedRoute>
+  } />
+  <Route path="/about" element={<About />} />
+  <Route path="/contact-us" element={<ContactUs />} /> 
+  <Route path="/product/:productId" element={<ProductDetailPage />} />
+  <Route path="/login" element={<Login />} />
+</Routes>
+
         <Cart cartItems={cart} />
       </div>
     </Router>
