@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Cart = ({ cartItems }) => {
+const Cart = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      const userEmail = localStorage.getItem('userEmail'); 
+      if (!userEmail) return; 
+      
+      const apiUrl = `https://crudcrud.com/api/a25554536d07468385425f4d4845936b/cart${encodeURIComponent(userEmail)}`;
+      
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error('Could not fetch cart items');
+        }
+        const data = await response.json();
+        setCartItems(data);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
